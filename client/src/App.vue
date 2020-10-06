@@ -1,10 +1,8 @@
 <template>
-  <section class="section">
     <div class="container">
       <Nav />
       <router-view/>
     </div>
-  </section>
 </template>
 
 <script>
