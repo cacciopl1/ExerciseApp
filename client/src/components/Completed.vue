@@ -22,7 +22,7 @@
                 <div class="content">
                     {{tracked.message}}
                     <br>
-                    <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                    <time datetime="2016-1-1">11:09 PM - {{i}} September 2020</time>
                 </div>
         </div>
     </div>
@@ -31,7 +31,8 @@
 <script>
 export default {
     props: {
-        tracked: Object
+        tracked: Object,
+        i: Number
     }
 }
 </script>
@@ -39,5 +40,11 @@ export default {
 <style>
     .card {
         margin-bottom: 15px;
+    }
+
+    time {
+        font-size: smaller;
+        font-style: italic;
+        float: right;
     }
 </style>

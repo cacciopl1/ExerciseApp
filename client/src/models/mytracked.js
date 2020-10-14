@@ -15,7 +15,7 @@ export const tracked = [
     },
     {
         image: 'https://media3.giphy.com/media/3o85xunRezGKPOkcG4/giphy.gif',
-        message: 'Upper body lift',
+        message: 'Upper body lift.',
         user: {
             name: 'Luc Caccioppoli',
             handle: 'lcaccio',

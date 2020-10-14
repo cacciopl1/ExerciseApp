@@ -5,7 +5,8 @@
     <div class="columns">
       <div class="column is-two-thirds">
         <Completed v-for=" (x, i) in tracked " 
-            :key="i" 
+            :key="i"
+            :i="i" 
             :tracked="x" />
       </div>
 
