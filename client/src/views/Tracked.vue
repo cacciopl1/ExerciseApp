@@ -4,7 +4,9 @@
 
     <div class="columns">
       <div class="column is-two-thirds">
-        <Completed />
+        <Completed v-for=" (x, i) in tracked " 
+            :key="i" 
+            :tracked="x" />
       </div>
 
       <div class="column is-one-third">
@@ -21,8 +23,14 @@
 <script>
 import Friends from "@/components/Friends";
 import Completed from "@/components/Completed";
+import { tracked } from "@/models/mytracked";
 
 export default {
+  data() {
+    return {
+        tracked
+    }
+  },
   components: {
     Friends, Completed
   }
