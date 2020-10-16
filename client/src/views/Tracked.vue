@@ -11,7 +11,8 @@
       </div>
 
       <div class="column is-one-third">
-        <Friends />
+          <Friends />
+          <PostWorkout />
       </div>
     </div>
 
@@ -24,6 +25,7 @@
 <script>
 import Friends from "@/components/Friends";
 import Completed from "@/components/Completed";
+import PostWorkout from "@/components/PostWorkout";
 import { tracked } from "@/models/mytracked";
 
 export default {
@@ -33,7 +35,7 @@ export default {
     }
   },
   components: {
-    Friends, Completed
+    Friends, Completed, PostWorkout
   }
 }
 </script>
