@@ -3,7 +3,7 @@
 <nav class="navbar is-black" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <router-link to="/home" class="navbar-item">
-      <img src="../assets/dumbell.jpg" height="28">
+      <i class="fas fa-dumbbell"></i>
     </router-link>
 
     <a role="button" class="navbar-burger burger" :class="{'is-active': isActive}" @click="isActive = !isActive" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">

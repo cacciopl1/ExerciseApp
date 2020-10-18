@@ -7,8 +7,13 @@
                 <img :src="session.user.profile">
                 </figure>
             </div>
-                <div class="media-content">
-                    <p class="is-italic has-text-weight-bold">@{{session.user.handle}}</p>
+            <div class="media-left">
+                <p class="is-italic has-text-weight-bold">@{{session.user.handle}}</p>
+            </div>
+            <div class="media-left">
+                <router-link to="/settings">
+                    <i class="fas fa-user-cog"></i>
+                </router-link>
             </div>
         </div>
 
