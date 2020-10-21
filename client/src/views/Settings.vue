@@ -69,7 +69,7 @@
                             Admin
                         </h1>
                         <h2 class="subtitle">
-                            coming soon because I don't know how to edit users without a server...
+                            <Admin />
                         </h2>
                     </div>
                 </div>
@@ -83,11 +83,23 @@
 
 <script>
 import session from "@/models/session";
+import accounts from "@/models/accounts";
+import Admin from "@/components/Admin";
 
 export default {
     data: ()=> ({
         session
-    })
+    }),
+
+    methods: {
+
+    },
+
+    components: {
+        Admin
+  }
+
+
 }
 </script>
 
