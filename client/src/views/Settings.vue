@@ -69,7 +69,11 @@
                             Admin
                         </h1>
                         <h2 class="subtitle">
-                            <Admin />
+                            Accounts: {{accounts.length}}
+                            <Admin v-for="(x, i) in accounts"
+                                :key="i"
+                                :i="i"
+                                :accounts="x" />
                         </h2>
                     </div>
                 </div>
@@ -87,9 +91,12 @@ import accounts from "@/models/accounts";
 import Admin from "@/components/Admin";
 
 export default {
-    data: ()=> ({
-        session
-    }),
+    data() {
+        return {
+            accounts,
+            session
+        }
+    },
 
     methods: {
 

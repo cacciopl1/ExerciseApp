@@ -150,7 +150,14 @@ export default {
             tracked.push(workout);
         },
         remove() {
-            tracked.pop();
+            if (accounts.length() > 1)
+            {
+                tracked.pop();
+            }
+            else
+            {
+                
+            }
         }
     }
 }

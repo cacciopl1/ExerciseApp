@@ -41,11 +41,7 @@ export default {
     methods: {
       login() {
         var inputVal = document.getElementById("email").value;
-        for (let i = 0; i < accounts.length; i++)
-        {
-          console.log(accounts[i].email);
-        }
-        
+
         for (let i = 0; i < accounts.length; i++)
         {
           if (inputVal == accounts[i].email)
@@ -53,7 +49,8 @@ export default {
             session.user = {
                 name: accounts[i].user.name,
                 handle: accounts[i].user.handle,
-                profile: accounts[i].user.profile
+                profile: accounts[i].user.profile,
+                email: accounts[i].email
             }
             this.$router.push('tracked')
           }
