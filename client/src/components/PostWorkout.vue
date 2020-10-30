@@ -50,9 +50,6 @@
             Delete Post
             </button>
         </div>
-        <p>
-            This is a work in progress that is based off the exercises tab. THIS WILL NOT BE HERE FOR THE FINAL PRODUCT. It will be way more in depth as a final product on its own seperate page, but for now the user is able to fill in (or don't) the fields for the specified exercise, then choose the exercise you want to post. The delete post button will remove the most recent post.
-        </p>
     </nav>
 </template>
 

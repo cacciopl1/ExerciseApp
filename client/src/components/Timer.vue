@@ -23,7 +23,6 @@ export default {
     methods: {
         add() {
             seconds++;
-            console.log(hours + "" + minutes + "" + seconds);
             if (seconds >= 60) {
                 seconds = 0;
                 minutes++;

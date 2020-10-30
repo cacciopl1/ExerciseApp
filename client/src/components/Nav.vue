@@ -22,9 +22,7 @@
         <router-link to="" class="navbar-link navbar-item">Exercises</router-link>
 
         <div class="navbar-dropdown">
-          <a class="navbar-item">
-            Outdoor Run
-          </a>
+          <router-link to="/outdoor" class="navbar-item">Outdoor Run</router-link>
           <hr class="navbar-divider">
           <a class="navbar-item">
             Treadmill Run

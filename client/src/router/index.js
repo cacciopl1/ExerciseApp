@@ -37,7 +37,13 @@ const routes = [
     path: '/settings',
     name: 'Setting',
     component: () => import('../views/Settings.vue')
+  },
+  {
+    path: '/outdoor',
+    name: 'Outdoor',
+    component: () => import('../views/OutdoorRun.vue')
   }
+
 ]
 
 const router = new VueRouter({
