@@ -1,11 +1,10 @@
 /*
 
 */
-
-const data = [{name: 'Luc', age: 22}, {name: 'Dom', age: 25}];
+const mysql = require('./mysql')
+const data = mysql.query('SELECT * FROM Users');
 
 async function getAll() {
-    //throw {status: 501, message: "This is a fake error" }
     return data;
 }
 
