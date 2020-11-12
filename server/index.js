@@ -8,6 +8,8 @@ const port = process.env.PORT || 3000;
 
 console.log(process.env.BEST_CLASS);
 
+app.use(express.json());
+
 app.get('/', (req, res, next) => {
   res.send('Hello Me' + req.url)
 })
