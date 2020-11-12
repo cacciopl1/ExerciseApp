@@ -35,8 +35,24 @@ router
             req.body.DOB,
             req.body.Password,
             6,
-            ).then(newUser => {
+        ).then(newUser => {
             res.send( newUser );
+        }).catch(next)
+    })
+    .put('/:id', (req, res, next) => {
+        users.update( req.params.id,
+            req.body.FirstName, 
+            req.body.LastName,
+            req.body.DOB,
+            req.body.Password,
+            6,
+        ).then(newUser => {
+            res.send( newUser );
+        }).catch(next)
+    })
+    .delete('/:id', (req, res, next) => {
+        users.remove(req.params.id).then(msg => {
+            res.send( msg );
         }).catch(next)
     })
 
