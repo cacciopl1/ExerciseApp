@@ -1,9 +1,11 @@
 /*
 
 */
-const mysql = require('./mysql')
+const mysql = require('./mysql');
+const cm = require('./ContactMethods');
 const users = mysql.query('SELECT * FROM Users');
 const types = mysql.query('SELECT id, Name FROM Types Where Type_id=2');
+const Types = { ADMIN:5, USER:6 };
 
 
 async function getAll() {
@@ -13,7 +15,7 @@ async function getAll() {
 async function get(id) {
     const rows = await mysql.query('SELECT * FROM Users WHERE id=?', [id]);
     if (!rows.length) throw { status: 404, message: "Sorry the user you requested doesn't exist" }
-    return rows;
+    return rows[0];
 }
 
 async function getTypes() {
@@ -28,7 +30,7 @@ async function add(FirstName, LastName, DOB, Password, User_Type) {
 
 async function update(id, FirstName, LastName, DOB, Password, User_Type) {
     const sql = "UPDATE Users SET ? WHERE id = ?;";
-    const data = { created_at: new Date(), FirstName, LastName, DOB: new Date(DOB), Password, User_Type };
+    const data = { FirstName, LastName, DOB: new Date(DOB), Password, User_Type };
     return await mysql.query(sql, [data, id]);
 }
 
@@ -37,6 +39,18 @@ async function remove(id) {
     return await mysql.query(sql, [id]);
 }
 
+async function register(FirstName, LastName, DOB, Password, User_Type, email) {
+    if(await cm.exists(email)) {
+        throw {status: 409, message: "you already signed up with this email. Please go to login."}
+    }
+    const res = await add(FirstName, LastName, DOB, Password, User_Type);
+    const emailRes = await cm.add(cm.Types.EMAIL, email, true, true, res.insertId);
+    const user = await get(res.insertId);
+    user.primaryEmail = email;
+    return user;
+
+}
+
 const search = async q => await mysql.query(`SELECT id, FirstName, LastName FROM Users WHERE LastName LIKE ? OR FirstName LIKE ?; `, [`%${q}%`, `%${q}%`]);
 
-module.exports = { get, getAll, getTypes, add, update, remove, search}
+module.exports = { get, getAll, getTypes, add, update, remove, search, register, Types}
