@@ -69,11 +69,28 @@
                             Admin
                         </h1>
                         <h2 class="subtitle">
-                            Accounts: {{accounts.length}}
-                            <Admin v-for="(x, i) in accounts"
-                                :key="i"
-                                :i="i"
-                                :accounts="x" />
+                            All of the accounts on the DataBase:
+                            <table class="table">
+                                <thead><tr>
+                                    <th>id</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Password</th>
+                                    <th>DOB</th>
+                                    <th>Type</th>
+                                </tr></thead>
+                                <tbody><tr v-for="(x, i) in users "
+                                        :key="i"
+                                        :i="i"
+                                        :post="x">
+                                    <th>{{x.id}}</th>
+                                    <th>{{x.FirstName}}</th>
+                                    <th>{{x.LastName}}</th>
+                                    <th>{{x.Password}}</th>
+                                    <th>{{x.DOB}}</th>
+                                    <th>{{x.Type}}</th>
+                                </tr></tbody>
+                            </table>
                         </h2>
                     </div>
                 </div>
@@ -88,25 +105,22 @@
 <script>
 import session from "@/models/session";
 import accounts from "@/models/accounts";
-import Admin from "@/components/Admin";
+import { getUsers } from "@/models/users";
 
 export default {
     data() {
         return {
             accounts,
-            session
+            session,
+            users: []
         }
     },
-
+    async created() {
+        this.users = await getUsers();
+    },
     methods: {
 
-    },
-
-    components: {
-        Admin
-  }
-
-
+    }
 }
 </script>
 
