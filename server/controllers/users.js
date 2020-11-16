@@ -51,6 +51,14 @@ router
             res.send( { ...newUser, Password: undefined } );
         }).catch(next)
     })
+    .post('/login', (req, res, next) => {
+        users.login(
+            req.body.Email, 
+            req.body.Password
+        ).then(newUser => {
+            res.send( { ...newUser, Password: undefined } );
+        }).catch(next)
+    })
     .put('/:id', (req, res, next) => {
         users.update( req.params.id,
             req.body.FirstName, 

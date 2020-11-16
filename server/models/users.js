@@ -1,10 +1,13 @@
 /*
 
 */
+const bcrypt = require('bcrypt');
 const mysql = require('./mysql');
 const cm = require('./ContactMethods');
 const users = mysql.query('SELECT * FROM Users');
 const types = mysql.query('SELECT id, Name FROM Types Where Type_id=2');
+
+const SALT_ROUNDS = process.env.SALT_ROUNDS || 8;
 const Types = { ADMIN:5, USER:6 };
 
 
@@ -20,6 +23,20 @@ async function get(id){
     const rows = await mysql.query(sql, [id]);
     if(!rows.length) throw { status: 404, message: "Sorry, there is no such user" };
     return rows[0];
+}
+
+async function login(email, password){
+    const sql = `SELECT *
+    FROM Users U Join ContactMethods CM ON U.id=CM.User_id WHERE CM.Value=?`;
+    const rows = await mysql.query(sql, [email]);
+    if(!rows.length) throw { status: 404, message: "Sorry, that email address is not registered with us." };
+    console.log({password, Password: rows[0].Password});
+
+    const hash = await bcrypt.hash(password, rows[0].Password)
+    const res = await bcrypt.compare(password, rows[0].Password)
+    console.log ({res, hash})
+    if(! res ) throw { status: 403, message: "Sorry, wrong password." };
+    return get(rows[0].User_id);
 }
 
 async function getTypes() {
@@ -47,7 +64,8 @@ async function register(FirstName, LastName, DOB, Password, User_Type, email) {
     if(await cm.exists(email)) {
         throw {status: 409, message: "you already signed up with this email. Please go to login."}
     }
-    const res = await add(FirstName, LastName, DOB, Password, User_Type);
+    const hash = await bcrypt.hash(Password, SALT_ROUNDS);
+    const res = await add(FirstName, LastName, DOB, hash, User_Type);
     const emailRes = await cm.add(cm.Types.EMAIL, email, true, true, res.insertId);
     const user = await get(res.insertId);
     return user;
@@ -56,4 +74,4 @@ async function register(FirstName, LastName, DOB, Password, User_Type, email) {
 
 const search = async q => await mysql.query(`SELECT id, FirstName, LastName FROM Users WHERE LastName LIKE ? OR FirstName LIKE ?; `, [`%${q}%`, `%${q}%`]);
 
-module.exports = { get, getAll, getTypes, add, update, remove, search, register, Types}
+module.exports = { get, getAll, getTypes, add, update, remove, search, register, login, Types}
