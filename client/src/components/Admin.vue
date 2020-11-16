@@ -1,5 +1,5 @@
 <template>
-    <div class="card">
+    <!-- <div class="card">
         <header class="card-header">
             <h1 class="card-header-title">
             {{accounts.user.name}}
@@ -38,12 +38,38 @@
             <a class="card-footer-item has-text-black">Save</a>
             <a class="card-footer-item has-text-black">Edit</a>
             <a class="card-footer-item has-text-black" @click.prevent="deleteAccount">Delete</a>
-        </footer>
-    </div>
+        </div>
+        </footer> -->
+
+        <div>
+            <table class="table is-narrow is-hoverable is-fullwidth">
+                <thead><tr>
+                    <th>id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Password</th>
+                    <th>DOB</th>
+                    <th>Type</th>
+                </tr></thead>
+                <tbody>
+                    <tr v-for=" (x, i) in getUsers"
+                            :key="i"
+                            :i="i"
+                            :post="x">
+                        <th>id</th>
+                        <th>FirstName</th>
+                        <th>LastName</th>
+                        <th>Password</th>
+                        <th>DOB</th>
+                        <th>Type</th>
+                    </tr>
+                </tbody>
+        </div>
 </template>
 
 <script>
-import accounts from "@/models/accounts"
+import accounts from "@/models/accounts";
+import { getUsers } from "@/models/users";
 
 export default {
     props: {
@@ -52,6 +78,14 @@ export default {
     },
 
     methods: {
+        data() {
+            return {
+                users: []
+            } 
+        },
+        async created() {
+            this.users = await getUsers();
+        },
         deleteAccount() {
             if (accounts.length > 1)
             {

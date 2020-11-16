@@ -14,6 +14,12 @@ app.use(express.json());
 app.use(express.static( __dirname + '/../docs/'));
 
 app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+app.use(function(req, res, next) {
   const arr = (req.headers.authorization || "").split(" ");
   if (arr.length > 1 && arr[1] != null) {
     req.userId = +arr[1];
