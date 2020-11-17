@@ -22,8 +22,8 @@ async function get(id){
     return rows[0];
 }
 
-async function getForPost(Workout_id){
-    const sql = `SELECT P.*, FirstName, LastName FROM ${PREFIX}Reactions P Join ${PREFIX}Users U ON P.Owner_id = U.id WHERE P.Post_id = ?`
+async function getForWorkout(Workout_id){
+    const sql = `SELECT P.*, FirstName, LastName FROM ${PREFIX}Reactions P Join ${PREFIX}Users U ON P.Owner_id = U.id WHERE P.Workout_id = ?`
     return await mysql.query(sql, [Workout_id]);
 }
 
@@ -55,4 +55,4 @@ async function remove(id){
 
 const search = async q => await mysql.query(`SELECT id, Text, Workout_id FROM ${PREFIX}Reactions WHERE Text LIKE ? ; `, [`%${q}%`]);
 
-module.exports = { get, getAll, getForPost, addLike, addDislike, update, remove, search}
+module.exports = { get, getAll, getForWorkout, addLike, addDislike, update, remove, search}
