@@ -15,7 +15,7 @@ async function get(id){
         *
     FROM ${PREFIX}Exercise_Types WHERE id=?`;
     const rows = await mysql.query(sql, [id]);
-    if(!rows.length) throw { status: 404, message: "Sorry, there is no such emoji" };
+    if(!rows.length) throw { status: 404, message: "Sorry, there is no such exercise type" };
     return rows[0];
 }
 

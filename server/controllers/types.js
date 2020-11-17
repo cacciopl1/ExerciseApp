@@ -1,51 +1,45 @@
 /*
-    controller for model exercisetypes
+    controller for model types
 */
 
 const express = require('express');
-const exercisetypes = require('../models/exercisetypes');
+const types = require('../models/types');
 
 const router = express.Router();
 
 router
     .get('/', (req, res, next) => {
-        exercisetypes.getAll().then(x=> res.send( x ))
+        types.getAll().then(x=> res.send( x ))
         .catch(next);
     })
     .get('/:id', (req, res, next) => {
         const id = +req.params.id;
         if (!id) return next();
-        exercisetypes.get(id).then(x=> res.send( x ) )
+        types.get(id).then(x=> res.send( x ) )
         .catch(next);
     })
     .get('/search', (req, res, next) => {
-        exercisetypes.search(req.query.q).then(x=> res.send(x))
+        types.search(req.query.q).then(x=> res.send(x))
         .catch(next);
     })
     .post('/', (req, res, next) => {
-        exercisetypes.add(
+        types.add(
             req.body.Name, 
-            req.body.Type,
-            req.body.Muscle_Group,
-            req.body.Video_Url,
-            req.body.Relative_Dificulty,
+            req.body.Type_id,
         ).then(newUser => {
             res.send( newUser );
         }).catch(next)
     })
     .put('/:id', (req, res, next) => {
-        exercisetypes.update(
+        types.update(
             req.body.Name, 
-            req.body.Type,
-            req.body.Muscle_Group,
-            req.body.Video_Url,
-            req.body.Relative_Dificulty,
+            req.body.Type_id,
         ).then(newUser => {
             res.send( newUser );
         }).catch(next)
     })
     .delete('/:id', (req, res, next) => {
-        exercisetypes.remove(req.params.id).then(msg => {
+        types.remove(req.params.id).then(msg => {
             res.send( msg );
         }).catch(next)
     })

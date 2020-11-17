@@ -18,7 +18,7 @@ async function get(id){
         *
     FROM ${PREFIX}Reactions WHERE id=?`;
     const rows = await mysql.query(sql, [id]);
-    if(!rows.length) throw { status: 404, message: "Sorry, there is no such comment" };
+    if(!rows.length) throw { status: 404, message: "Sorry, there is no such reaction" };
     return rows[0];
 }
 

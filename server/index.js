@@ -11,6 +11,7 @@ const workouts = require('./controllers/workouts');
 const emojis = require('./controllers/emojis');
 const exercisetypes = require('./controllers/exercisetypes');
 const followers = require('./controllers/followers');
+const types = require('./controllers/types');
 
 
 const app = express()
@@ -47,6 +48,7 @@ app.use('/workouts', workouts);
 app.use('/emojis', emojis);
 app.use('/exercisetypes', exercisetypes);
 app.use('/followers', followers);
+app.use('/types', types);
 
 app.get('*', (req, res, next) => {
   const filename = path.join( __dirname, '/../docs/index.html');

@@ -1,5 +1,5 @@
 /*
-    controller for model workouts
+    controller for model emojis
 */
 
 const express = require('express');

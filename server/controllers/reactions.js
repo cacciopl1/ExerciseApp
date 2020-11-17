@@ -1,5 +1,5 @@
 /*
-    controller for model comments
+    controller for model reactions
 */
 
 const express = require('express');
