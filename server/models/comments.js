@@ -1,5 +1,5 @@
 /*
-    comments module
+    comments model
 */
 const mysql = require('./mysql');
 
