@@ -4,22 +4,21 @@
 const bcrypt = require('bcrypt');
 const mysql = require('./mysql');
 const cm = require('./ContactMethods');
-const users = mysql.query('SELECT * FROM Users');
-const types = mysql.query('SELECT id, Name FROM Types Where Type_id=2');
 
+const PREFIX = process.env.MYSQL_TABLE_PREFIX || 'EX_Fall_2020_';
 const SALT_ROUNDS = process.env.SALT_ROUNDS || 8;
 const Types = { ADMIN:5, USER:6 };
 
 
 async function getAll() {
-    return await users;
+    return await mysql.query(`SELECT * FROM ${PREFIX}Users`);
 }
 
 async function get(id){
     const sql = `SELECT 
         *,
-        (SELECT Value FROM ContactMethods Where User_id = Users.id AND Type='${cm.Types.EMAIL}' AND IsPrimary = true) as PrimaryEmail
-    FROM Users WHERE id=?`;
+        (SELECT Value FROM ${PREFIX}ContactMethods Where User_id = ${PREFIX}Users.id AND Type='${cm.Types.EMAIL}' AND IsPrimary = true) as PrimaryEmail
+    FROM ${PREFIX}Users WHERE id=?`;
     const rows = await mysql.query(sql, [id]);
     if(!rows.length) throw { status: 404, message: "Sorry, there is no such user" };
     return rows[0];
@@ -27,7 +26,7 @@ async function get(id){
 
 async function login(email, password){
     const sql = `SELECT *
-    FROM Users U Join ContactMethods CM ON U.id=CM.User_id WHERE CM.Value=?`;
+    FROM ${PREFIX}Users U Join ${PREFIX}ContactMethods CM ON U.id=CM.User_id WHERE CM.Value=?`;
     const rows = await mysql.query(sql, [email]);
     if(!rows.length) throw { status: 404, message: "Sorry, that email address is not registered with us." };
     console.log({password, Password: rows[0].Password});
@@ -40,23 +39,24 @@ async function login(email, password){
 }
 
 async function getTypes() {
-    return await types;
+    return await mysql.query(`SELECT id, Name FROM ${PREFIX}Types WHERE Type_id = 2`);
 }
 
 async function add(FirstName, LastName, DOB, Password, User_Type) {
-    const sql = "INSERT INTO Users (created_at, FirstName, LastName, DOB, Password, User_Type) VALUES ?;";
+    const sql = `INSERT INTO ${PREFIX}Users (created_at, FirstName, LastName, DOB, Password, User_Type) VALUES ? ;`;
     const data = [[new Date(), FirstName, LastName, new Date(DOB), Password, User_Type]];
     return await mysql.query(sql, [data]);
 }
 
 async function update(id, FirstName, LastName, DOB, Password, User_Type) {
-    const sql = "UPDATE Users SET ? WHERE id = ?;";
+    const sql = `UPDATE ${PREFIX}Users SET ? WHERE id = ?;`;
     const data = { FirstName, LastName, DOB: new Date(DOB), Password, User_Type };
     return await mysql.query(sql, [data, id]);
 }
 
 async function remove(id) {
-    const sql = "DELETE FROM Users WHERE Users.id = ?";
+    cm.remove(id); // have to delete foreign key in contact methods first in order to delete the user
+    const sql = `DELETE FROM ${PREFIX}Users WHERE id = ?`;
     return await mysql.query(sql, [id]);
 }
 
@@ -72,6 +72,6 @@ async function register(FirstName, LastName, DOB, Password, User_Type, email) {
 
 }
 
-const search = async q => await mysql.query(`SELECT id, FirstName, LastName FROM Users WHERE LastName LIKE ? OR FirstName LIKE ?; `, [`%${q}%`, `%${q}%`]);
+const search = async q => await mysql.query(`SELECT id, FirstName, LastName FROM ${PREFIX}Users WHERE LastName LIKE ? OR FirstName LIKE ?; `, [`%${q}%`, `%${q}%`]);
 
 module.exports = { get, getAll, getTypes, add, update, remove, search, register, login, Types}
