@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 require('dotenv').config();
 
+//controllers
 const users = require('./controllers/users');
 
 const app = express()
@@ -31,6 +32,7 @@ app.get('/', (req, res, next) => {
   res.send('Hello Me' + req.url)
 })
 
+// use controllers
 app.use('/users', users);
 
 app.get('*', (req, res, next) => {
