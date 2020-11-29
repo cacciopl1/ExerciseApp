@@ -27,15 +27,20 @@
           </button>
       </p>
     </div>
-    <p>
-      Current available accounts to login are: lcaccioppoli7@gmail.com, hcaccioppoli@gmail.com, dcaccioppoli1@gmail.com. Password doesn't matter.   
-    </p>
+    <div class="field">
+      <p class="control">
+          <button class="button is-success" @click.prevent="googleLogin">
+          Google
+          </button>
+      </p>
+    </div>
 </form>
 </template>
 
 <script>
 import session from "@/models/session";
 import accounts from "@/models/accounts";
+let auth2 = null;
 
 export default {
     methods: {
@@ -55,7 +60,36 @@ export default {
             this.$router.push('tracked')
           }
         }
+      },
+      async googleLogin() {
+        const googleUser = await auth2.signIn()
+        console.log(googleUser);
+        const profile = googleUser.getBasicProfile();
+        console.log(profile);
+        session.user = {
+            name: profile.getName(),
+            handle: profile.getEmail(),
+            profile: profile.getImageUrl(),
+        }
+        this.$router.push('tracked')
       }
     }
 }
+
+//////////////////////////////////
+//  Load Google Scripts
+        const googleScriptTag = document.createElement('script')
+        googleScriptTag.setAttribute('src', 'https://apis.google.com/js/api:client.js')
+        document.head.appendChild(googleScriptTag)
+        googleScriptTag.onload = () => {
+            // the global gapi variable is created by loading that script
+            gapi.load('auth2', () => {
+                auth2 = gapi.auth2.init({
+                    client_id: "837329520831-ds6cdvk7ruoegv5ln9mvb0fq5h6gn80n.apps.googleusercontent.com",
+                    cookiepolicy: 'single_host_origin',
+                    scope: 'profile email'
+                })
+            })
+        }
+
 </script>
