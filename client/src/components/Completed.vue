@@ -24,15 +24,63 @@
                     <br>
                     <time :datetime="workouts.created_at">{{workouts.created_at}}</time>
                 </div>
+
+                <div class="media" v-for="c in workouts.Comments" :key="c.id">
+                    <div class="media-content">
+                        <span>
+                            <b>{{c.FirstName}} {{c.LastName}} </b>
+                            {{c.Text}}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="field is-grouped">
+                    <p class="control is-expanded">
+                        <input class="input" type="text" placeholder="Add a Comment" v-model="commentText">
+                    </p>
+                    <p class="control">
+                        <a class="button is-primary" @click.prevent="comment">
+                            <i class="fas fa-comment"></i>
+                        </a>
+                    </p>
+                </div>
+
+                <footer class="card-footer">
+                    <a href="" class="card-footer-item" @click.prevent="like">
+                        <i class="fas fa-heart"></i>
+                        {{workouts.Reactions}}
+                    </a>
+                    <a href="" class="card-footer-item">
+                        <i class="fas fa-user-plus"></i>
+                    </a>
+                </footer>
         </div>
     </div>
 </template>
 
 <script>
+
+import { like, comment  } from "../models/mytracked";
+
 export default {
+    data: ()=>({
+        commentText: ''
+    }),
     props: {
         workouts: Object,
         i: Number
+    },
+    methods: {
+        like() {
+            const that = this;
+            like(this.workouts.id)
+            .then(x=> that.workouts.Reactions += 1)
+            .catch(err=> console.error(err))
+        },
+        async comment() {
+            const response = await comment(this.workouts.id, this.commentText);
+            this.workouts.Comments.push(response);
+        }
     }
 }
 </script>

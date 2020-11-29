@@ -22,17 +22,8 @@ router
         reactions.search(req.query.q).then(x=> res.send(x))
         .catch(next);
     })
-    .post('/like', (req, res, next) => {
+    .post('/', (req, res, next) => {
         reactions.addLike(
-            req.body.Text, 
-            req.body.Workout_id,
-            req.body.Owner_id,
-        ).then(newUser => {
-            res.send( newUser );
-        }).catch(next)
-    })
-    .post('/dislike', (req, res, next) => {
-        reactions.addDislike(
             req.body.Text, 
             req.body.Workout_id,
             req.body.Owner_id,

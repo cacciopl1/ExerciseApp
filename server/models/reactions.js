@@ -4,8 +4,7 @@
 const mysql = require('./mysql');
 
 const PREFIX = process.env.MYSQL_TABLE_PREFIX || 'EX_Fall_2020_';
-const Emojis = { LIKE: '❤️',
-                 DISLIKE: '👎'
+const Emojis = { LIKE: '❤️'
                 }
 
 async function getAll() {
@@ -34,13 +33,6 @@ async function addLike( Emoji = Emojis.LIKE, Workout_id, Owner_id){
     return get(res.insertId);
 }
 
-async function addDislike( Emoji = Emojis.DISLIKE, Workout_id, Owner_id){
-    const sql = `INSERT INTO ${PREFIX}Reactions (created_at, Emoji, Workout_id, Owner_id) VALUES ? ;`;
-    const params = [[new Date(), Emoji, Workout_id, Owner_id]];
-    const res = await mysql.query(sql, [params]);
-    return get(res.insertId);
-}
-
 async function update(id, Emoji, Workout_id, Owner_id){
     const sql = `UPDATE ${PREFIX}Reactions SET ? WHERE id = ?;`;
     const params = { Emoji, Workout_id, Owner_id };
@@ -55,4 +47,4 @@ async function remove(id){
 
 const search = async q => await mysql.query(`SELECT id, Text, Workout_id FROM ${PREFIX}Reactions WHERE Text LIKE ? ; `, [`%${q}%`]);
 
-module.exports = { get, getAll, getForWorkout, addLike, addDislike, update, remove, search}
+module.exports = { get, getAll, getForWorkout, addLike, update, remove, search}
