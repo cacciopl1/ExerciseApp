@@ -4,25 +4,25 @@
             <div class="media">
                 <div class="media-left">
                     <figure class="image is-48x48">
-                    <img :src="tracked.user.profile">
+                    <img :src="`http://localhost:3001/public/profiles/${workouts.Owner_id}.jpg`">
                     </figure>
                 </div>
                     <div class="media-content">
-                        <p class="title is-4">{{tracked.user.name}}</p>
-                        <p class="subtitle is-6">@{{tracked.user.handle}}</p>
+                        <p class="title is-4">{{workouts.FirstName}} {{workouts.LastName}}</p>
+                        <p class="subtitle is-6">{{workouts.Exercise_Type}}</p>
                     </div>
                 </div>
 
                 <div class="card-image">
                     <figure class="image is-4by3">
-                        <img :src="tracked.image">
+                        <img src="https://a.abcnews.com/images/Lifestyle/HT_dailymoves_workouts_mm_151231.gif">
                     </figure>
                 </div>
 
                 <div class="content">
-                    {{tracked.message}}
+                    {{workouts.Note}}
                     <br>
-                    <time datetime="2016-1-1">11:09 PM - {{i}} September 2020</time>
+                    <time :datetime="workouts.created_at">{{workouts.created_at}}</time>
                 </div>
         </div>
     </div>
@@ -31,7 +31,7 @@
 <script>
 export default {
     props: {
-        tracked: Object,
+        workouts: Object,
         i: Number
     }
 }

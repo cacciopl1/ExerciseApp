@@ -4,10 +4,10 @@
 
     <div class="columns">
       <div class="column is-two-thirds">
-        <Completed v-for=" (x, i) in tracked " 
+        <Completed v-for=" (x, i) in workouts " 
             :key="i"
             :i="i" 
-            :tracked="x" />
+            :workouts="x" />
       </div>
 
       <div class="column is-one-third">
@@ -24,13 +24,16 @@
 <script>
 import Friends from "@/components/Friends";
 import Completed from "@/components/Completed";
-import { tracked } from "@/models/mytracked";
+import { getTracked } from "@/models/mytracked";
 
 export default {
   data() {
     return {
-        tracked
+        workouts: []
     }
+  },
+  async created() {
+    this.workouts = await getTracked();
   },
   components: {
     Friends, Completed
