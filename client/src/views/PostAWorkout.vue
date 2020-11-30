@@ -8,18 +8,19 @@
                 </figure>
             </div>
             <div class="tile is-child box is-vertical">
-                <p class="title">SPLITS</p>
-                <p></p>
+                <p class="title">STRENGTH TRAIN</p>
+                
             </div>
         </div>
         <div class="tile is-vertical is-parent">
             <div class="tile is-child box">
-                <p class="title">BEGIN WORKOUT</p>
+                <p class="title">TIMER</p>
                 <Timer />
             </div>
             <div class="tile is-child box">
-                <p class="title">MISC</p>
-                <PostWorkout />
+                <p class="title">CARDIO</p>
+                <OutdoorRun />
+                <IndoorRun />
             </div>
         </div>
     </div>
@@ -27,11 +28,12 @@
 
 <script>
 import Timer from "@/components/Timer";
-import PostWorkout from "@/components/PostWorkout";
+import OutdoorRun from "@/components/OutdoorRun";
+import IndoorRun from "@/components/IndoorRun";
 
 export default {
     components: {
-        Timer, PostWorkout
+        Timer, OutdoorRun, IndoorRun
     }
 }
 </script>

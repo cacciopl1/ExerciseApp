@@ -17,29 +17,11 @@
     <div class="navbar-start">
       <router-link to="/about"  class="navbar-item" >About</router-link>
       <router-link to="/tracked"  class="navbar-item" >Tracked</router-link>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <router-link to="" class="navbar-link navbar-item">Exercises</router-link>
-
-        <div class="navbar-dropdown">
-          <router-link to="/outdoor" class="navbar-item">Outdoor Run</router-link>
-          <hr class="navbar-divider">
-          <a class="navbar-item">
-            Treadmill Run
-          </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item">
-            Strength Training
-          </a>
-        </div>
-      </div>
-      
+      <router-link to="/post" class="navbar-item">Post-A-Workout</router-link>
     </div>
     <div class="navbar-end">
       <div class="navbar-item">
-
         <UserBadge />
-
       </div>
     </div>
   </div>

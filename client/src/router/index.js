@@ -39,9 +39,9 @@ const routes = [
     component: () => import('../views/Settings.vue')
   },
   {
-    path: '/outdoor',
-    name: 'Outdoor',
-    component: () => import('../views/OutdoorRun.vue')
+    path: '/post',
+    name: 'Post',
+    component: () => import('../views/PostAWorkout.vue')
   }
 
 ]
