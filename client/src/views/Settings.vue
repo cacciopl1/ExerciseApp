@@ -61,7 +61,7 @@
             </section>
         </div>
 
-        <div v-if="session.user.handle == 'lcaccio'">
+        <div v-if="session.user.id == 8">
             <section class="hero is-dark is-bold">
                 <div class="hero-body">
                     <div class="container">
