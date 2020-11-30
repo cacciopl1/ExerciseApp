@@ -4,11 +4,11 @@
         <div class="media" v-if="session.user">
             <div class="media-left">
                 <figure class="image">
-                <img :src="session.user.profile">
+                <img :src="`http://localhost:3001/public/profiles/${session.user.id}.jpg`">
                 </figure>
             </div>
             <div class="media-left">
-                <p class="is-italic has-text-weight-bold">@{{session.user.handle}}</p>
+                <p class="is-italic has-text-weight-bold">{{session.user.email}}</p>
             </div>
             <div class="media-left">
                 <router-link to="/settings">

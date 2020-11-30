@@ -36,12 +36,14 @@ const routes = [
   {
     path: '/settings',
     name: 'Setting',
-    component: () => import('../views/Settings.vue')
+    component: () => import('../views/Settings.vue'),
+    beforeEnter: checkSessionUser
   },
   {
     path: '/post',
     name: 'Post',
-    component: () => import('../views/PostAWorkout.vue')
+    component: () => import('../views/PostAWorkout.vue'),
+    beforeEnter: checkSessionUser
   }
 
 ]

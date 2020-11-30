@@ -24,6 +24,7 @@
 <script>
 import Friends from "@/components/Friends";
 import Completed from "@/components/Completed";
+import session from "@/models/session";
 import { getTracked } from "@/models/mytracked";
 
 export default {

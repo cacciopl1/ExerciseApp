@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import session from "@/models/session";
 import Timer from "@/components/Timer";
 import OutdoorRun from "@/components/OutdoorRun";
 import IndoorRun from "@/components/IndoorRun";

@@ -3,7 +3,7 @@
     <h1><b>Welcome to the Login Page!</b></h1>
     <div class="login">
       <p class="control has-icons-left has-icons-right">
-          <input class="input" type="email" placeholder="Email" id="email">
+          <input class="input" type="email" placeholder="Email" v-model="email">
           <span class="icon is-small is-left">
           <i class="fas fa-envelope"></i>
           </span>
@@ -14,7 +14,7 @@
     </div>
     <div class="field">
       <p class="control has-icons-left">
-          <input class="input" type="password" placeholder="Password">
+          <input class="input" type="password" v-model="password">
           <span class="icon is-small is-left">
           <i class="fas fa-lock"></i>
           </span>
@@ -40,26 +40,32 @@
 <script>
 import session from "@/models/session";
 import accounts from "@/models/accounts";
+import { getUsers, login } from "../models/users";
 let auth2 = null;
 
 export default {
+    data() {
+      return {
+        users: [],
+        email: '',
+        password: ''
+      }
+    },
+    async created() {
+      this.users = await getUsers();
+    },
     methods: {
-      login() {
-        var inputVal = document.getElementById("email").value;
+      async login() {
+        const response = await login(this.email, this.password);
+        console.log(response);
 
-        for (let i = 0; i < accounts.length; i++)
-        {
-          if (inputVal == accounts[i].email)
-          {
-            session.user = {
-                name: accounts[i].user.name,
-                handle: accounts[i].user.handle,
-                profile: accounts[i].user.profile,
-                email: accounts[i].email
-            }
-            this.$router.push('tracked')
-          }
+        session.user = {
+          id: response.id,
+          firstName: response.FirstName,
+          lastName: response.LastName,
+          email: response.PrimaryEmail
         }
+        this.$router.push('tracked')
       },
       async googleLogin() {
         const googleUser = await auth2.signIn()

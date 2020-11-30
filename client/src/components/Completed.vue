@@ -59,7 +59,7 @@
 </template>
 
 <script>
-
+import session from "@/models/session";
 import { like, comment  } from "../models/mytracked";
 
 export default {

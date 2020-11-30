@@ -16,18 +16,18 @@
                                     <div class="tile is-parent is-vertical">
                                         <article class="tile is-child notification is-primary">
                                             <p class="title">NAME</p>
-                                            <p class="subtitle">{{session.user.name}}</p>
+                                            <p class="subtitle">{{session.user.firstName}} {{session.user.lastName}}</p>
                                         </article>
                                         <article class="tile is-child notification is-warning">
-                                            <p class="title">HANDLE</p>
-                                            <p class="subtitle">@{{session.user.handle}}</p>
+                                            <p class="title">EMAIL</p>
+                                            <p class="subtitle">{{session.user.email}}</p>
                                         </article>
                                     </div>
                                     <div class="tile is-parent">
                                         <article class="tile is-child notification is-info">
                                         <p class="title">PROFILE</p>
                                         <figure class="image is-4by3">
-                                            <img :src="session.user.profile">
+                                            <img :src="`http://localhost:3001/public/profiles/${session.user.id}.jpg`">
                                         </figure>
                                         </article>
                                     </div>
