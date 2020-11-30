@@ -7,14 +7,14 @@
             <span class="panel-icon">
             <i class="fas fa-book" aria-hidden="true"></i>
             </span>
-            Distance:
+            <b>Distance:</b>
             <input class="input" type="text" v-model="distance">
         </a>
         <a class="panel-block">
             <span class="panel-icon">
             <i class="fas fa-book" aria-hidden="true"></i>
             </span>
-            Notes:
+            <b>Notes:</b>
             <input class="input" type="text" v-model="note">
         </a>
         <div class="panel-block">

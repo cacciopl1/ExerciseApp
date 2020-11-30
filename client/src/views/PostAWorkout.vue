@@ -9,7 +9,9 @@
             </div>
             <div class="tile is-child box is-vertical">
                 <p class="title">STRENGTH TRAIN</p>
-                
+                <BisTris />
+                <Chest />
+                <Back />
             </div>
         </div>
         <div class="tile is-vertical is-parent">
@@ -22,6 +24,11 @@
                 <OutdoorRun />
                 <IndoorRun />
             </div>
+            <div class="tile is-child box is-vertical">
+                <p class="title">STRENGTH TRAIN</p>
+                <Shoulders />
+                <Legs />
+            </div>
         </div>
     </div>
 </template>
@@ -30,10 +37,15 @@
 import Timer from "@/components/Timer";
 import OutdoorRun from "@/components/OutdoorRun";
 import IndoorRun from "@/components/IndoorRun";
+import BisTris from "@/components/BisTris";
+import Shoulders from "@/components/Shoulders";
+import Chest from "@/components/Chest";
+import Back from "@/components/Back";
+import Legs from "@/components/Legs";
 
 export default {
     components: {
-        Timer, OutdoorRun, IndoorRun
+        Timer, OutdoorRun, IndoorRun, BisTris, Shoulders, Chest, Back, Legs
     }
 }
 </script>

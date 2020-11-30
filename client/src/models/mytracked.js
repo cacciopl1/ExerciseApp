@@ -23,3 +23,23 @@ export function outdoorRun(note, distance) {
 export function indoorRun(note, distance) {
     return myFetch('workouts', { Owner_id: 1, Privacy_Setting: 4, Start_Time: 'NOW()', End_Time: 'NOW()', Exercise_Type: 'Indoor Run', Note: note, Distance: distance})
 }
+
+export function bisTris(note, sets, reps, weight) {
+    return myFetch('workouts', { Owner_id: 1, Privacy_Setting: 4, Start_Time: 'NOW()', End_Time: 'NOW()', Exercise_Type: `Bi's and Tri's`, Note: note, Sets: sets, Reps_Per_Set: reps, Weight: weight})
+}
+
+export function shoulders(note, sets, reps, weight) {
+    return myFetch('workouts', { Owner_id: 1, Privacy_Setting: 4, Start_Time: 'NOW()', End_Time: 'NOW()', Exercise_Type: 'Shoulders', Note: note, Sets: sets, Reps_Per_Set: reps, Weight: weight})
+}
+
+export function chest(note, sets, reps, weight) {
+    return myFetch('workouts', { Owner_id: 1, Privacy_Setting: 4, Start_Time: 'NOW()', End_Time: 'NOW()', Exercise_Type: 'Chest', Note: note, Sets: sets, Reps_Per_Set: reps, Weight: weight})
+}
+
+export function back(note, sets, reps, weight) {
+    return myFetch('workouts', { Owner_id: 1, Privacy_Setting: 4, Start_Time: 'NOW()', End_Time: 'NOW()', Exercise_Type: 'Back', Note: note, Sets: sets, Reps_Per_Set: reps, Weight: weight})
+}
+
+export function legs(note, sets, reps, weight) {
+    return myFetch('workouts', { Owner_id: 1, Privacy_Setting: 4, Start_Time: 'NOW()', End_Time: 'NOW()', Exercise_Type: 'Leg Day', Note: note, Sets: sets, Reps_Per_Set: reps, Weight: weight})
+}
