@@ -3,7 +3,14 @@
     <h1> <b>About the App!</b> </h1>
     <p>
       <br>Welcome to the Exercise Fitness App! The place where you can track your various workouts.
-      <br><br> Better explanation coming soon...
+      <br><br> Functionalities:
+      <br>1. After you signup and create an account, you can then login!
+      <br>2. Once you login, you will be redirected to the tracked page where you can see and track your previous workouts!
+      <br>3. Want to begin exercising? Go to the Post-A-Workout tab to be able to input data about specified workouts and hit POST on their respective cards.
+      <br>4. Then your workout will be posted on the tracked page where you can like and comment on your hard work!
+      <br>5. You can also view your account info from the purple cog on the navagation bar at the top!
+      <br><br>Have fun! and thanks for trying out the app!
+      <br>-Luc
     </p>
   </div>
 </template>
