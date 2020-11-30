@@ -1,2 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0b9f47"],{"34c3":function(e,n,t){"use strict";t.r(n);var c=function(){var e=this,n=e.$createElement;e._self._c;return e._m(0)},s=[function(){var e=this,n=e.$createElement,t=e._self._c||n;return t("div",{staticClass:"signup"},[t("h1",[t("b",[e._v("Welcome to the Signup page!")])])])}],u={name:"Signup",components:{}},a=u,i=t("2877"),l=Object(i["a"])(a,c,s,!1,null,null,null);n["default"]=l.exports}}]);
-//# sourceMappingURL=chunk-2d0b9f47.69485f36.js.map
