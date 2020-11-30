@@ -35,7 +35,16 @@
                                     <div class="tile is-parent">
                                     <article class="tile is-child notification is-danger">
                                         <p class="title">ABOUT</p>
-                                        <p class="subtitle">This tile is about you <br> coming soon...</p>
+                                        <p class="subtitle">
+                                            Member since: {{session.user.created}}
+                                            <br>DOB: {{session.user.dob}}
+                                        </p>
+                                        <p v-if="session.user.type == 6">
+                                            Member Type: User
+                                        </p>
+                                        <p v-if="session.user.type == 5">
+                                            Member Type: Admin
+                                        </p>
                                         <div class="content">
                                         <!-- Content -->
                                         </div>
@@ -61,7 +70,7 @@
             </section>
         </div>
 
-        <div v-if="session.user.id == 8">
+        <div v-if="session.user.type == 5">
             <section class="hero is-dark is-bold">
                 <div class="hero-body">
                     <div class="container">

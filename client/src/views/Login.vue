@@ -63,7 +63,11 @@ export default {
           id: response.id,
           firstName: response.FirstName,
           lastName: response.LastName,
-          email: response.PrimaryEmail
+          email: response.PrimaryEmail,
+          dob: response.DOB,
+          created: response.created_at,
+          type: response.User_Type
+
         }
         this.$router.push('tracked')
       },
