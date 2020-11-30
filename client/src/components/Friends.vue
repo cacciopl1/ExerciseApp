@@ -1,7 +1,7 @@
 <template>
     <nav class="panel is-black">
         <p class="panel-heading">
-            Friends
+            Users
         </p>
         <div class="panel-block">
             <p class="control has-icons-left">
@@ -12,44 +12,65 @@
             </p>
         </div>
         <p class="panel-tabs">
-            <a class="is-active">All</a>
-            <a>Favorites</a>
+            <a @click.prevent="clickAll">All</a>
+            <a @click.prevent="clickFollowing">Friends</a>
         </p>
-        <a class="panel-block is-active">
-            <span class="panel-icon">
-            <i class="fas fa-book" aria-hidden="true"></i>
-            </span>
-            Dominic
-        </a>
-        <a class="panel-block">
-            <span class="panel-icon">
-            <i class="fas fa-book" aria-hidden="true"></i>
-            </span>
-            Wendy
-        </a>
-        <a class="panel-block">
-            <span class="panel-icon">
-            <i class="fas fa-book" aria-hidden="true"></i>
-            </span>
-            Emma
-        </a>
-        <a class="panel-block">
-            <span class="panel-icon">
-            <i class="fas fa-book" aria-hidden="true"></i>
-            </span>
-            Halle
-        </a>
-        <div class="panel-block">
-            <button class="button is-danger is-outlined is-fullwidth">
-            Reset Favorites
-            </button>
+        <div v-if="this.all">
+            <a class="panel-block is-active" v-for="(x, i) in allUsers "
+                :key="i"
+                :i="i"
+                :post="x">
+                <div>
+                    <b>{{x.FirstName}} {{x.LastName}}</b>
+                    <a @click.prevent="follow(x.id)" class="button is-primary">
+                        Follow
+                    </a>
+                </div>
+            </a>
         </div>
+        <div v-else-if="this.following">
+            <a class="panel-block is-active" v-for="(x, i) in followingUsers "
+                :key="i"
+                :i="i"
+                :post="x">
+                <p><b>{{x.Firstname}} {{x.LastName}}</b></p>
+            </a>
+        </div>
+
     </nav>
 </template>
 
 <script>
-export default {
 
+import { getUsers, getFollowers, followUser } from "../models/users";
+import session from "@/models/session";
+
+export default {
+    data: ()=>({
+        allUsers: [],
+        followingUsers: [],
+        all: true,
+        following: false,
+        session
+    }),
+    async created() {
+        this.allUsers = await getUsers();
+        this.followingUsers = await getFollowers();
+    },
+    methods: {
+        clickAll() {
+            this.all = true;
+            this.following = false;
+        },
+        clickFollowing() {
+            this.all = false;
+            this.following = true;
+        },
+        async follow(id) {
+            const response = await followUser(id, session.user.id);
+            alert("Follow successful! They now have to follow you back on their profile in order for you to see them on your friends list.");
+        }
+    }
 }
 </script>
 
