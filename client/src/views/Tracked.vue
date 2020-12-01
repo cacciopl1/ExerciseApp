@@ -17,9 +17,9 @@
 
       <div class="column is-one-third">
           <Friends />
-          <!-- <a @click.prevent="test" class="button is-primary">
-            Submit (used for testing)
-          </a> -->
+          <a @click.prevent="test" class="button is-primary">
+            Submit
+          </a>
       </div>
     </div>
 
@@ -60,6 +60,7 @@ export default {
     test() {
       console.log(this.workouts);
       console.log(this.friendsWorkouts);
+      console.log(session.user);
     }
   }
 }

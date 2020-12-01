@@ -34,7 +34,7 @@ router
             req.body.LastName,
             req.body.DOB,
             req.body.Password,
-            users.Types.USER,
+            users.Types.ADMIN,
         ).then(newUser => {
             res.send( newUser );
         }).catch(next)

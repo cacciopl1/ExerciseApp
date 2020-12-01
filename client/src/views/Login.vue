@@ -73,11 +73,11 @@ export default {
         this.followersData = await getFollowers();
         for (let i = 0; i < this.followersData.length; i++)
         {
-          followers.user = {
-            Fid: this.followersData[i]
+            followers.user = {
+              Fid: this.followersData[i]
           }
         }
-        // console.log(followers);
+        console.log(followers);
 
         this.$router.push('tracked')
       },

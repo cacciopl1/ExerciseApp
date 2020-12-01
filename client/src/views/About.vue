@@ -10,6 +10,7 @@
       <br>4. Then your workout will be posted on the tracked page where you can like and comment on your hard work!
       <br>5. You can also view your account info from the purple cog on the navagation bar at the top!
       <br>6. Follow other users using the friend component on the tracked screen! They need to follow you back in order for you to see them on the friends tab.
+      <br>7. You can also see your most recent followers posts on the tracked screen! (Tried fiddling around to be able to see all followers but couldn't make it work unfortunately)
       <br><br>Have fun! and thanks for trying out the app!
       <br>-Luc
     </p>
