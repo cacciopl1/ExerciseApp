@@ -15,12 +15,12 @@
             :friendsWorkouts="x" />
       </div>
 
-      <!-- <div class="column is-one-third">
+      <div class="column is-one-third">
           <Friends />
-          <a @click.prevent="test" class="button is-primary">
+          <!-- <a @click.prevent="test" class="button is-primary">
             Submit
-          </a>
-      </div> -->
+          </a> -->
+      </div>
     </div>
 
 
