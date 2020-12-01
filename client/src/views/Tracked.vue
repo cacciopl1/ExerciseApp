@@ -8,10 +8,18 @@
             :key="i"
             :i="i" 
             :workouts="x" />
+
+            <Completed v-for=" (x, i) in friendsWorkouts " 
+            :key="i"
+            :i="i" 
+            :friendsWorkouts="x" />
       </div>
 
       <div class="column is-one-third">
           <Friends />
+          <a @click.prevent="test" class="button is-primary">
+            Submit
+          </a>
       </div>
     </div>
 
@@ -25,19 +33,33 @@
 import Friends from "@/components/Friends";
 import Completed from "@/components/Completed";
 import session from "@/models/session";
-import { getTracked } from "@/models/mytracked";
+import followers from "@/models/followers";
+import { getTracked, getFollowerPosts } from "@/models/mytracked";
+import { getFollowers } from "@/models/users";
+
+
+
 
 export default {
   data() {
     return {
-        workouts: []
+        workouts: [],
+        friendsWorkouts: []
     }
   },
   async created() {
     this.workouts = await getTracked();
+    this.friendsWorkouts = await getFollowerPosts();
+    
   },
   components: {
     Friends, Completed
+  },
+  methods: {
+    test() {
+      console.log(this.workouts);
+      console.log(this.friendsWorkouts);
+    }
   }
 }
 </script>

@@ -26,6 +26,12 @@ router
         workouts.getByUser(id).then(x=> res.send( x ) )
         .catch(next);
     })
+    .get('/byFollower/:id', (req, res, next) => {
+        const id = +req.params.id;
+        if (!id) return next();
+        workouts.getByFollower(id).then(x=> res.send( x ) )
+        .catch(next);
+    })
     .get('/:id/comments', (req, res, next) => {
         const id = +req.params.id;
         if(!id) return next();

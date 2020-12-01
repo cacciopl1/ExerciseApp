@@ -5,8 +5,11 @@
 
 import { myFetch } from "./my-fetch";
 import session from "@/models/session";
+import followers from "@/models/followers";
 
 export const getTracked = ()=> myFetch(`workouts/byUser/${session.user.id}`);
+
+export const getFollowerPosts = ()=> myFetch(`workouts/byUser/${followers.user.Fid.Follower_id}`);
 
 export function like(workout_id) {
     return myFetch('reactions', { Workout_id: workout_id, Owner_id: session.user.id })

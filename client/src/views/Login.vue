@@ -39,14 +39,16 @@
 
 <script>
 import session from "@/models/session";
+import followers from "@/models/followers";
 import accounts from "@/models/accounts";
-import { getUsers, login } from "../models/users";
+import { getUsers, login, getFollowers } from "../models/users";
 let auth2 = null;
 
 export default {
     data() {
       return {
         users: [],
+        followersData: [],
         email: '',
         password: ''
       }
@@ -57,7 +59,6 @@ export default {
     methods: {
       async login() {
         const response = await login(this.email, this.password);
-        console.log(response);
 
         session.user = {
           id: response.id,
@@ -67,8 +68,17 @@ export default {
           dob: response.DOB,
           created: response.created_at,
           type: response.User_Type
-
         }
+
+        this.followersData = await getFollowers();
+        for (let i = 0; i < this.followersData.length; i++)
+        {
+          followers.user = {
+            Fid: this.followersData[i]
+          }
+        }
+        console.log(followers);
+
         this.$router.push('tracked')
       },
       async googleLogin() {

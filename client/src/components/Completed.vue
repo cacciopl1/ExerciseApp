@@ -50,9 +50,6 @@
                         <i class="fas fa-heart"></i>
                         {{workouts.Reactions}}
                     </a>
-                    <a href="" class="card-footer-item">
-                        <i class="fas fa-user-plus"></i>
-                    </a>
                 </footer>
         </div>
     </div>

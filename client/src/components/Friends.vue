@@ -33,7 +33,9 @@
                 :key="i"
                 :i="i"
                 :post="x">
-                <p><b>{{x.Firstname}} {{x.LastName}}</b></p>
+                <div>
+                    <b>{{x.Firstname}} {{x.LastName}}</b>
+                </div>
             </a>
         </div>
 
@@ -44,6 +46,8 @@
 
 import { getUsers, getFollowers, followUser } from "../models/users";
 import session from "@/models/session";
+
+
 
 export default {
     data: ()=>({

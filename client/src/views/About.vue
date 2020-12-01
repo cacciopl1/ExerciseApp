@@ -9,6 +9,7 @@
       <br>3. Want to begin exercising? Go to the Post-A-Workout tab to be able to input data about specified workouts and hit POST on their respective cards.
       <br>4. Then your workout will be posted on the tracked page where you can like and comment on your hard work!
       <br>5. You can also view your account info from the purple cog on the navagation bar at the top!
+      <br>6. Follow other users using the friend component on the tracked screen! They need to follow you back in order for you to see them on the friends tab.
       <br><br>Have fun! and thanks for trying out the app!
       <br>-Luc
     </p>
