@@ -77,7 +77,7 @@ export default {
             Fid: this.followersData[i]
           }
         }
-        //console.log(followers);
+        // console.log(followers);
 
         this.$router.push('tracked')
       },

@@ -9,7 +9,7 @@
             :i="i" 
             :workouts="x" />
 
-            <Completed v-for=" (x, i) in friendsWorkouts " 
+            <CompletedFollowers v-for=" (x, i) in friendsWorkouts " 
             :key="i"
             :i="i" 
             :friendsWorkouts="x" />
@@ -18,7 +18,7 @@
       <div class="column is-one-third">
           <Friends />
           <!-- <a @click.prevent="test" class="button is-primary">
-            Submit
+            Submit (used for testing)
           </a> -->
       </div>
     </div>
@@ -32,6 +32,7 @@
 <script>
 import Friends from "@/components/Friends";
 import Completed from "@/components/Completed";
+import CompletedFollowers from "@/components/CompletedFollowers";
 import session from "@/models/session";
 import followers from "@/models/followers";
 import { getTracked, getFollowerPosts } from "@/models/mytracked";
@@ -53,7 +54,7 @@ export default {
     
   },
   components: {
-    Friends, Completed
+    Friends, Completed, CompletedFollowers
   },
   methods: {
     test() {
