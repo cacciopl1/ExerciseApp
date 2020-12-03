@@ -18,6 +18,7 @@
       <router-link to="/about"  class="navbar-item" >About</router-link>
       <router-link to="/tracked"  class="navbar-item" >Tracked</router-link>
       <router-link to="/post" class="navbar-item">Post-A-Workout</router-link>
+      <router-link to="/search" class="navbar-item">Search</router-link>
     </div>
     <div class="navbar-end">
       <div class="navbar-item">

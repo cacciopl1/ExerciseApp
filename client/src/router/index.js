@@ -44,8 +44,13 @@ const routes = [
     name: 'Post',
     component: () => import('../views/PostAWorkout.vue'),
     beforeEnter: checkSessionUser
+  },
+  {
+    path: '/search',
+    name: 'Search',
+    component: () => import('../views/Search.vue'),
+    beforeEnter: checkSessionUser
   }
-
 ]
 
 const router = new VueRouter({
